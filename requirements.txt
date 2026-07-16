@@ -1,0 +1,12 @@
+altgraph==0.17.5
+greenlet==3.5.3
+packaging==26.2
+pefile==2024.8.26
+playwright==1.61.0
+pyee==13.0.1
+pyinstaller==6.21.0
+pyinstaller-hooks-contrib==2026.6
+python-dotenv==1.2.2
+pywin32-ctypes==0.2.3
+setuptools==83.0.0
+typing_extensions==4.16.0
