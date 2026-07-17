@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Pulls the data securely (if none exists, sets a blank default value)
-USUARIO = os.getenv("POSTO_USER", "")
-SENHA = os.getenv("POSTO_PASSWORD", "")
+USER = os.getenv("POSTO_USER", "")
+PASSWORD = os.getenv("POSTO_PASSWORD", "")
 
 try:
     with sync_playwright() as p:
@@ -19,8 +19,8 @@ try:
         page.goto("http://localhost:7089/")
 
         # Preenchimento usando variáveis protegidas e seletores estáticos identificados na tela de login
-        page.fill('[id="O14_id-inputEl"]', USUARIO)
-        page.fill('[id="O18_id-inputEl"]', SENHA)
+        page.fill('[id="O14_id-inputEl"]', USER)
+        page.fill('[id="O18_id-inputEl"]', PASSWORD)
 
         login_button = page.locator('[id="O2C_id"]')
         login_button.click()
