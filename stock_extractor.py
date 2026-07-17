@@ -1,7 +1,13 @@
+import os
 from playwright.sync_api import sync_playwright
+from dotenv import load_dotenv
 
-USUARIO = None
-SENHA = None
+# Loads the environment variables entered in the file .env
+load_dotenv()
+
+# Pulls the data securely (if none exists, sets a blank default value)
+USUARIO = os.getenv("POSTO_USER", "")
+SENHA = os.getenv("POSTO_PASSWORD", "")
 
 try:
     with sync_playwright() as p:
