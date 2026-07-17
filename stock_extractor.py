@@ -28,7 +28,7 @@ try:
         # Avoids the use of 'time.sleep' by expecting the network to be idle after login
         page.wait_for_load_state("networkidle")
 
-        print("Login efetuado com sucesso (credenciais protegidas)!")
+        print("Successful login (protected credentials)!")
 
         # PAUSE: Open the Playwright panel for a stock screen inspection
         page.pause()
