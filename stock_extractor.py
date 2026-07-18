@@ -19,10 +19,10 @@ try:
         page.goto("http://localhost:7089/")
 
         # Populating using protected variables and static selectors identified on the login screen
-        page.fill('[id="O14_id-inputEl"]', USER)
-        page.fill('[id="O18_id-inputEl"]', PASSWORD)
+        page.get_by_placeholder("usuário").fill(USER)
+        page.get_by_placeholder("senha").fill(PASSWORD)
 
-        login_button = page.locator('[id="O2C_id"]')
+        login_button = page.get_by_text("Acessar")
         login_button.click()
 
         # Avoids the use of 'time.sleep' by expecting the network to be idle after login
