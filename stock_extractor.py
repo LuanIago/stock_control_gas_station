@@ -27,6 +27,19 @@ try:
 
         print("Successful login (protected credentials)!")
 
+        # Stores the HTML sidebar structure of the gas station system
+        side_menu = page.locator('iframe[name="name_htmlMenu_OD7"]').content_frame
+
+        # Go through three menus before accessing the inventory report:
+        # [ Relatorios -> Estoques -> Estoques por Grupo ou ]
+        menu_reports = side_menu.locator("li").filter(has_text="Relatorios")
+        menu_reports.click()
+
+        menu_stocks = menu_reports.get_by_role("link", name="Estoques")
+        menu_stocks.click()
+
+        side_menu.get_by_role("link", name="Estoques por Grupo ou").click()
+
         # PAUSE: Open the Playwright panel for a stock screen inspection
         page.pause()
 
