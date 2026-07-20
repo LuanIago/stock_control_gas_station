@@ -2,6 +2,8 @@ import os
 from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
 
+URL = "http://localhost:7089/"
+
 # Loads the environment variables entered in the file .env
 load_dotenv()
 
@@ -16,14 +18,14 @@ try:
         context = browse.new_context()
         page = context.new_page()
 
-        page.goto("http://localhost:7089/")
+        page.goto(URL)
 
         # Populating using protected variables and static selectors identified on the login screen
         page.get_by_placeholder("usuário").fill(USER)
         page.get_by_placeholder("senha").fill(PASSWORD)
 
-        login_button = page.get_by_text("Acessar")
-        login_button.click()
+        # Identify the login button and click on it
+        page.get_by_text("Acessar").click()
 
         print("Successful login (protected credentials)!")
 
