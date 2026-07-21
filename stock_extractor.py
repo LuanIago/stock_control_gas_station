@@ -55,6 +55,9 @@ try:
             "radio", name="Todos"
         ).click()
 
+        # Click the apply filters button
+        page.get_by_role("button", name="Aplicar Filtro").click()
+
         # PAUSE: Open the Playwright panel for a stock screen inspection
         page.pause()
 
