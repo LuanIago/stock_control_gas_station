@@ -50,6 +50,11 @@ try:
         date_field = date_label.locator("xpath=../following-sibling::div[1]")
         date_field.locator("input").fill(current_date)
 
+        # Select the option to show all products in stock
+        page.get_by_role("group", name="Produtos com Estoque").get_by_role(
+            "radio", name="Todos"
+        ).click()
+
         # PAUSE: Open the Playwright panel for a stock screen inspection
         page.pause()
 
