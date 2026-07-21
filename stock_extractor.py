@@ -1,6 +1,7 @@
 import os
 from playwright.sync_api import sync_playwright
 from dotenv import load_dotenv
+from datetime import datetime
 
 URL = "http://localhost:7089/"
 
@@ -17,6 +18,8 @@ try:
         browse = p.chromium.launch(headless=False, channel="chrome")
         context = browse.new_context()
         page = context.new_page()
+
+        current_date = datetime.now().strftime("%d%m%Y")
 
         page.goto(URL)
 
@@ -41,6 +44,11 @@ try:
         menu_stocks.click()
 
         side_menu.get_by_role("link", name="Estoques por Grupo ou").click()
+
+        # Find the date field and fill it in with the current date to receive the current stock
+        date_label = page.locator("label.required", has_text="Data do Estoque")
+        date_field = date_label.locator("xpath=../following-sibling::div[1]")
+        date_field.locator("input").fill(current_date)
 
         # PAUSE: Open the Playwright panel for a stock screen inspection
         page.pause()
