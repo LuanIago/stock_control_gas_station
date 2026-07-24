@@ -13,6 +13,26 @@ USER = os.getenv("POSTO_USER", "")
 PASSWORD = os.getenv("POSTO_PASSWORD", "")
 
 
+def is_report(response):
+    """Checks whether the response is the stock report.
+
+    Args:
+        response (Response): Playwright response object.
+
+    Returns:
+        bool: True if the response contains the stock report, otherwise False.
+    """
+    if "HandleEvent" not in response.url:
+        return False
+
+    try:
+        text = response.text()
+        return "<!DOCTYPE html>" in text
+
+    except:
+        return False
+
+
 def main():
 
     try:
@@ -60,9 +80,7 @@ def main():
 
             page.pause()
             # Captures the response of the request after clicking the apply filters button
-            with page.expect_response(
-                lambda r: "HandleEvent" in r.url
-            ) as response_info:
+            with page.expect_response(is_report) as response_info:
                 # Click the apply filters button
                 page.get_by_role("button", name="Aplicar Filtro").click()
 
