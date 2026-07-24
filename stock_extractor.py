@@ -78,7 +78,6 @@ def main():
                 "radio", name="Todos"
             ).click()
 
-            page.pause()
             # Captures the response of the request after clicking the apply filters button
             with page.expect_response(is_report) as response_info:
                 # Click the apply filters button
@@ -86,12 +85,6 @@ def main():
 
             response = response_info.value
             html = response.text()
-
-            # Test messages
-            print(f"Requested URL: {response.url}")
-            print(f"HTTP code (200, 404...): {response.status}")
-            print(f"Headers: {response.headers}")
-            print(f"Initial part of the reply: {html[:500]}")
 
             # PAUSE: Open the Playwright panel for a stock screen inspection
             page.pause()
